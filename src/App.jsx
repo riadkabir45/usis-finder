@@ -2,14 +2,22 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import sha256 from 'crypto-js/sha256';
+import { AES, enc } from 'crypto-js';
 
 function App() {
   //const [count, setCount] = useState(0)
-  var token = "Empty";
+  var token = "";
+  
 
   
   function handleClick() {
-    console.log('You submitted',token,'.');
+  	var data = sha256(token).toString();
+  	if("a05028d37f839797ca0c2d510b3f1993326dc0c269364811f92adfdbd7d00385" == data)
+	    console.log("Owner!!");
+	else
+	    console.log("Not owner!!");
+	//console.log(sha256("Pass").toString());
   }
   
   function handleChange(event){
