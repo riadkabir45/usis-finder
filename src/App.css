@@ -1,0 +1,21 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.entry {
+  height: 50vh;
+  width: 25vw;
+}
+
+.bg-primary {
+  background-color: #9A08FA !important;
+}
+
+@media (orientation: portrait) {
+	.entry {
+	  height: 50vh;
+	  width: 70vw;
+	}
+}
