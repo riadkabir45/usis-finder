@@ -9,6 +9,15 @@
   width: 25vw;
 }
 
+.inliner{
+	display: inline;
+}
+
+.sidePanel{
+  height: 50vh;
+  width: 15vw;
+}
+
 .bg-primary {
   background-color: #9A08FA !important;
 }
@@ -18,4 +27,8 @@
 	  height: 50vh;
 	  width: 70vw;
 	}
+}
+
+-h-f{
+	height: 15%;
 }
