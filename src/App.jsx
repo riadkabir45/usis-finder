@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="row">
       <div className="entry rounded bg-primary row p-4 me-2">
-      	<p className="fs-1">Usis Finder 1.2</p>
+      	<p className="fs-1" id="ttle">Usis Finder 1.2</p>
       	<p className="fs-5">Please login to usis right before working here</p>
 	<SubApp>{setLst}</SubApp>
       </div>

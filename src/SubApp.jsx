@@ -23,7 +23,9 @@ function App({children}) {
             preData.push(perInfo)
         }
         setData(preData)
-        //alert("Data Updated");
+        console.log(document.title)
+        if (!document.title.includes('Updated'))
+            document.title = document.title+" (Updated)"
       }else if(newData.length != 0) 
         console.log("Already Updated")
       else 
