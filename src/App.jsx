@@ -10,7 +10,7 @@ function App() {
 
   const [lst,setLst] = useState([]);
   
-  console.log(lst);
+  //console.log(lst);
 
   return (
     <div className="row">
