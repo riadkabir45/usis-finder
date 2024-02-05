@@ -36,9 +36,11 @@ function App({children}) {
   
   const [token,setToken] = useState("");
   const [owner,setOwner] = useState(false);
-  const [time,setTime] = useState("627117");
+  const [time,setTime] = useState(new Date().getFullYear());
+  const [sem,setSem] = useState("spr");
   
   function handleClick() {
+	event.preventDefault();
   	var data = sha256(token).toString();
   	if("a05028d37f839797ca0c2d510b3f1993326dc0c269364811f92adfdbd7d00385" == data)
 	    setOwner(true);
@@ -48,6 +50,7 @@ function App({children}) {
   }
   
   function handleClickD() {
+	event.preventDefault();
   	var matchList = [];
 	children(matchList);
 	if(newData.length != 0)
@@ -65,8 +68,15 @@ function App({children}) {
  				break
  		}
  		if(all){
- 		    cData[i]["TIME"] = time;
- 			matchList.push(cData[i]);
+		    var offset = 0;
+		    if(sem == 'smr')
+			offset = 1;
+		    else if(sem == 'fall')
+			offset = 2;
+		    var codeTime = (627123-2024*3+parseInt(time)*3 + offset).toString();
+		    console.log(codeTime);
+ 		    cData[i]["TIME"] = codeTime;
+			matchList.push(cData[i]);
  		}
 	}
 	children(matchList);
@@ -74,18 +84,22 @@ function App({children}) {
   
   if(owner == false)
 	  return (
-	    <>
-		<input type="password" id="tokenField" className="form-control align-self-center text-center" value={token} onChange={(event) => {setToken(event.target.value);}} placeholder="Access Token"/>
+	    <form>
+		<input type="password" id="tokenField" className="form-control align-self-center text-center" value={token} onChange={(event) => {setToken(event.target.value);}} placeholder="Access Token"/><br/>
 		<button type="submit" className="btn btn-dark bg-primary mb-3" onClick={handleClick}>Confirm Token</button>
-	    </>
+	    </form>
 	  )
   else
 	  return (
-	    <>
-		<input type="text" className="form-control h-f align-self-center text-center" value={token} onChange={(event) => {setToken(event.target.value);}}  id="exampleFormControlInput1" placeholder="Name or Dept or ID"/>
-		<input type="text" className="form-control h-f align-self-center text-center" value={time} onChange={(event) => {setTime(event.target.value);}}  id="exampleFormControlInput1" placeholder="Time Eg: 627117"/>
+	    <form>
+		<input type="text" className="form-control h-f align-self-center text-center" value={token} onChange={(event) => {setToken(event.target.value);}}  id="exampleFormControlInput1" placeholder="Name or Dept or ID"/><br/>
+		<input type="text" className="form-control h-f align-self-center text-center" value={time} onChange={(event) => {setTime(event.target.value);}}  id="exampleFormControlInput1" placeholder="Time Eg: 627117"/><br/>
+		<input  className="form-check-input" type="radio" name="semester" onChange={(event) => {setSem('spr');}} checked={sem === 'spr'}/> Spring &nbsp;
+		<input  className="form-check-input" type="radio" name="semester" onChange={(event) => {setSem('smr');}} checked={sem === 'smr'}/> Summer &nbsp;
+		<input  className="form-check-input" type="radio" name="semester" onChange={(event) => {setSem('fal');}} checked={sem === 'fal'}/> Fall &nbsp;
+		<br/><br/>
 		<button type="submit" className="btn btn-dark bg-primary mb-3" onClick={handleClickD}>Confirm Data</button>
-	    </>
+	    </form>
 	  )
 }
 
